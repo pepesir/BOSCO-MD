@@ -1,0 +1,55 @@
+{
+	"name": "BOSCO-MD",
+	"description": "Bosco-md is the Modified Version of WhatsAsena, Made By @pepesir with Baileys.",
+	"logo": "https://telegra.ph/file/c53950a0bf6c46e878fbd.jpg",
+	"keywords": ["whatsapp", "userbot", "Bosco", "WhatsAsena", "md", "bot", "ai"],
+	"repository": "https://github.com/pepesir/BOSCO-MD",
+	"website":   "https://github.com/pepesir/BOSCO-MD",
+	"success_url": "https://github.com/pepesir/BOSCO-MD",
+	"stack": "container",
+	"env": {
+		"SUDO": {
+			"description": "Must enter your number if you are using in PRIVATE mode; Your number must be in international format. So you should have your number after the country code. Example: 91xxxxxxxxx,33xxxxxxxx",
+			"required": false },
+			"BLOCK_CHAT": {
+				"description": "Enter number for blocking personal chat ",
+				"value": "" ,
+				"required": false },
+				"NO_ONLINE": {
+					"description": "Type true if you don't want to appear online.",
+					"required": false,
+					"value": "false" },
+					"WORK_TYPE": {
+						"description": "public/private",
+						"value": "public", 
+						"required": true },
+						"HANDLERS": {
+							"description": "prefix !",
+							"value": "^[.!;]", 
+							"required": true },
+							"SEND_READ": {
+								"description": "If entered true , bot will mark messages as read",
+								"value": "true", 
+								"required": true },
+								"HEROKU": { 
+									"description": "",
+									"value": "true", 
+									"required": true },
+									"HEROKU_API_KEY": {
+										"description": "",
+										"value": "" , 
+										"required": true },
+										"SESSION_ID": {
+											"description": "Your Session ID",
+											"required": true },
+											"HEROKU_APP_NAME": { 
+												"description": "Enter heroku app name same as you given first",
+												"value": "" , 
+												"required": true }
+												},"addons": [{
+													"plan": "heroku-postgresql"
+													}],
+													"buildpacks": [{
+														"url": "heroku-community/apt"
+														}]
+														}

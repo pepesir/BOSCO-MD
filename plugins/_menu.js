@@ -63,22 +63,22 @@ Bosco.addCMD({
 								HANDLER = '.';
 								}
 								if (command.type === 'download') {
-									download += `▢ ${HANDLER}${match}\n│`
+									download += `┃𓊗│ ${HANDLER}${match}\n│`
 									}
 									if (command.type === 'group') {
-										group += `▢ ${HANDLER}${match}\n│`
+										group += `┃𖣐│ ${HANDLER}${match}\n│`
 										}
 										if (command.type === 'heroku') {
-											heroku += `▢ ${HANDLER}${match}\n│`
+											heroku += `┃〄│ ${HANDLER}${match}\n│`
 											}
 											if (command.type === 'search') {
-												search += `▢ ${HANDLER}${match}\n│`
+												search += `┃𖤣│ ${HANDLER}${match}\n│`
 												}
 												if (command.type === 'convert') {
-													convert += `▢ ${HANDLER}${match}\n│`
+													convert += `┃※│ ${HANDLER}${match}\n│`
 													}
 													if (command.type === 'misc' || command.type === '' || !command.type === '') {
-														misc += `▢ ${HANDLER}${match}\n│`
+														misc += `┃𖢨│ ${HANDLER}${match}\n│`
 														}         
 														}
 														);
@@ -115,7 +115,7 @@ Bosco.addCMD({
 ┃𖢨│${misc}
 ┃𖢨╰─────────────────
 ╰══════════════════⊷❍
-╭════〘 ꜱᴇᴛᴛɪɴɢ 〙════⊷❍
+╭════〘 ʜᴇʀᴏᴋᴜ 〙════⊷❍
 ┃〄╭─────────────────
 ┃〄│ 
 ┃〄│${heroku}
@@ -136,12 +136,12 @@ Bosco.addCMD({
 `
 														
 let buttons = [
-  {buttonId: `help`, buttonText: {displayText: 'ʜᴇʟᴩ'}, type: 1},
+  {buttonId: `${config.HANDLERS}help`, buttonText: {displayText: 'ʜᴇʟᴩ'}, type: 1},
   {buttonId: `owner`, buttonText: {displayText: 'ᴏᴡɴᴇʀ'}, type: 1},
   {buttonId: `ping`, buttonText: {displayText: 'ᴩɪɴɢ'}, type: 1}
    ]
    let buttonMessage = {
-  image: { url: "https://telegra.ph/file/c53950a0bf6c46e878fbd.jpg" },
+  image: { url: "https://telegra.ph/file/a2c59c0a297f262976506.jpg" },
   caption: CMD_MENU.trim(),
   footer: "ʙᴏꜱᴄᴏ-ᴍᴅ",
   buttons: buttons,

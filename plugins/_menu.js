@@ -134,18 +134,6 @@ Bosco.addCMD({
 ┃𖤣╰─────────────────
 ╰══════════════════⊷❍
 `
-														
-let buttons = [
-  {buttonId: `${config.HANDLERS}help`, buttonText: {displayText: 'ʜᴇʟᴩ'}, type: 1},
-  {buttonId: `owner`, buttonText: {displayText: 'ᴏᴡɴᴇʀ'}, type: 1},
-  {buttonId: `ping`, buttonText: {displayText: 'ᴩɪɴɢ'}, type: 1}
-   ]
-   let buttonMessage = {
-  image: { url: "https://telegra.ph/file/a2c59c0a297f262976506.jpg" },
-  caption: CMD_MENU.trim(),
-  footer: "ʙᴏꜱᴄᴏ-ᴍᴅ",
-  buttons: buttons,
-  headerType: 4
-   }
-   conn.sendMessage(conn.chatId, buttonMessage, { quoted: conn.data })
+									
+   await conn.sendMessage(conn.chatId, { image: { url: "https://telegra.ph/file/a2c59c0a297f262976506.jpg" },caption: CMD_MENU.trim(), contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { title: 'ʙᴏꜱᴄᴏ-ᴍᴅ', body: '', previewType: "PHOTO", thumbnail: await getBuffer('https://telegra.ph/file/a2c59c0a297f262976506.jpg'), sourceUrl: 'https://github.com/pepesir/BOSCO-MD' } }}, { quoted: conn.data });
 														});

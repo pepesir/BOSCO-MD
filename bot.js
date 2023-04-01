@@ -1,3 +1,4 @@
+// © pepesir - 2023
 const { default: makeWASocket,
         delay,
         downloadContentFromMessage,	

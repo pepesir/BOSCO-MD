@@ -1,3 +1,5 @@
+> contributions are allowed
+
 > Base bot
 
 > Free

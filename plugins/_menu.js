@@ -63,22 +63,22 @@ Bosco.addCMD({
 								HANDLER = '.';
 								}
 								if (command.type === 'download') {
-									download += `┃𓊗│ ${HANDLER}${match}\n│`
+									download += ` ${HANDLER}${match}\n┃𓊗│`
 									}
 									if (command.type === 'group') {
-										group += `┃𖣐│ ${HANDLER}${match}\n│`
+										group += ` ${HANDLER}${match}\n┃𖣐│`
 										}
 										if (command.type === 'heroku') {
-											heroku += `┃〄│ ${HANDLER}${match}\n│`
+											heroku += ` ${HANDLER}${match}\n┃〄│`
 											}
 											if (command.type === 'search') {
-												search += `┃𖤣│ ${HANDLER}${match}\n│`
+												search += ` ${HANDLER}${match}\n┃𖤣│`
 												}
 												if (command.type === 'convert') {
-													convert += `┃※│ ${HANDLER}${match}\n│`
+													convert += ` ${HANDLER}${match}\n┃※│`
 													}
 													if (command.type === 'misc' || command.type === '' || !command.type === '') {
-														misc += `┃𖢨│ ${HANDLER}${match}\n│`
+														misc += ` ${HANDLER}${match}\n┃𖢨│`
 														}         
 														}
 														);

@@ -135,7 +135,7 @@ if (!fs.existsSync("./session.json")) {
   																		if (config.SUDO !== false) {
   																			var sudo = config.SUDO.split(',');
   																			if (config.WORKTYPE.toLowerCase().trim() === "private" && !sudo.includes(msg.sender.split('@')[0]) && !command.on) return
-  																			if (config.WORKTYPE.toLowerCase().trim() === "public" && command.isOwner === true && !sudo.includes(msg.sender.split('@')[0])) return
+  																			if (config.WORKTYPE.toLowerCase().trim() === "public" && command.isOwner === true && !sudo.includes(msg.sender.split('@')[0]) && msg.sender != conn.user.jid ) return
 }
 if ((command.on !== undefined && (command.on === 'image' || command.on === 'photo') && msg.message && msg.message.imageMessage !== null && (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))) || (command.pattern !== undefined && command.pattern.test(text_msg)) || (command.on !== undefined && command.on === 'text' && text_msg) || (command.on !== undefined && (command.on === 'video') && msg.message && msg.message.videoMessage !== null && (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg))))) {
 	let sendMsg = false

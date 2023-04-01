@@ -135,18 +135,17 @@ Bosco.addCMD({
 ╰══════════════════⊷❍
 `
 														
-														const buttons = [
-  {buttonId: 'help', buttonText: {displayText: 'ʜᴇʟᴩ'}, type: 1},
-  {buttonId: 'ping', buttonText: {displayText: 'ᴩɪɴɢ'}, type: 1},
-  {buttonId: 'owner', buttonText: {displayText: 'ᴏᴡɴᴇʀ'}, type: 1}
-  ]
-  const buttonMessage = {
-    image: {url: 'https://telegra.ph/file/c53950a0bf6c46e878fbd.jpg'},
-    caption: CMD_MENU.trim(),
-    footer: "ʙᴏꜱᴄᴏ-ᴍᴅ",
-    buttons: buttons,
-    headerType: 4
-}
-
-await conn.sendMessage(conn.chatId, buttonMessage, { quoted: conn.data })
+let buttons = [
+  {buttonId: `help`, buttonText: {displayText: 'ʜᴇʟᴩ'}, type: 1},
+  {buttonId: `owner`, buttonText: {displayText: 'ᴏᴡɴᴇʀ'}, type: 1},
+  {buttonId: `ping`, buttonText: {displayText: 'ᴩɪɴɢ'}, type: 1}
+   ]
+   let buttonMessage = {
+  image: { url: "https://telegra.ph/file/c53950a0bf6c46e878fbd.jpg" },
+  caption: CMD_MENU.trim(),
+  footer: "ʙᴏꜱᴄᴏ-ᴍᴅ",
+  buttons: buttons,
+  headerType: 4
+   }
+   conn.sendMessage(conn.chatId, buttonMessage, { quoted: conn.data })
 														});

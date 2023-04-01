@@ -30,12 +30,12 @@ if (!fs.existsSync("./session.json")) {
     console.log("session occured")
     );
     }
-    fs.readdirSync('./plugins/sql/').forEach(plugin => {
+    fs.readdirSync('./plugins/SQL/').forEach(plugin => {
     	if(path.extname(plugin).toLowerCase() == '.js') {
-    		require('./plugins/sql/' + plugin);
+    		require('./plugins/SQL/' + plugin);
     		}
     		});
-    		const plugindb = require('./plugins/sql/plugin');
+    		const plugindb = require('./plugins/SQL/plugin');
     		String.prototype.format = function() {
     			var i = 0,
     			args = arguments;

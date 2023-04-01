@@ -2,8 +2,6 @@
 
 > Base bot
 
-> Free
-
 > Open source 
 
 ## Deploy

@@ -242,7 +242,7 @@ Bosco.addCMD(
       caption: availupdate,
       footer: `bosco-md`,
       buttons: [
-        {buttonId: 'update now', buttonText: {displayText: '_UPDATE NOW_'}}
+        {buttonId: '${prefix}update now', buttonText: {displayText: '_UPDATE NOW_'}}
     ]
 			}, {quoted: conn.data})	
       		}

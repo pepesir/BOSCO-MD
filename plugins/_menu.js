@@ -123,12 +123,12 @@ Bosco.addCMD({
 └────────────────────𔒝
 `
    await conn.sendMessage(conn.chatId, {
-      image: { url: 'https://telegra.ph/file/6086f101a36f7fc14bff6.png', },
-      caption: CMD_MENU,
+      image: { url: 'https://telegra.ph/file/a2c59c0a297f262976506.jpg', },
+      caption: CMD_MENU.trim(),
       footer: `bosco-md`,
       buttons: [
         {buttonId: 'alive', buttonText: {displayText: 'ALIVE TEST'}},
-      {buttonId: 'ping', buttonText: {displayText: 'SPEED TEST'}}
+      {buttonId: '.ping', buttonText: {displayText: 'SPEED TEST'}}
     ],
     
     contextInfo: {
@@ -136,12 +136,10 @@ Bosco.addCMD({
 					title:  "BOSCO-MD",
 					body: "",
 					mediaType: 2,
-					thumbnail: await getBuffer('https://telegra.ph/file/6086f101a36f7fc14bff6.png'),
+					thumbnail: await getBuffer('https://telegra.ph/file/a2c59c0a297f262976506.jpg'),
 					mediaUrl: 'https://github.com/pepesir/BOSCO-MD',
 					sourceUrl: 'https://github.com/pepesir/BOSCO-MD',
 					showAdAttribution: true
 					}
 				}
-			}, {quoted: conn.data})									
-   await conn.sendMessage(conn.chatId, { image: { url: "https://telegra.ph/file/a2c59c0a297f262976506.jpg" },caption: CMD_MENU.trim(), contextInfo: { forwardingScore: 1, isForwarded: false, externalAdReply: { title: 'ʙᴏꜱᴄᴏ-ᴍᴅ', body: '', previewType: "PHOTO", thumbnail: await getBuffer('https://telegra.ph/file/a2c59c0a297f262976506.jpg'), sourceUrl: 'https://github.com/pepesir/BOSCO-MD' } }}, { quoted: conn.data });
-														});
+			}, {quoted: conn.data})																							});

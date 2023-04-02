@@ -30,7 +30,7 @@ global.PREFIX = ''
 if (/\[(\W*)\]/.test(config.HANDLERS)) {
    PREFIX = config.HANDLERS.match(/\[(\W*)\]/)[1][0];
 } else {
-   PREFIX = '.'
+   PREFIX = config.HANDLERS
 }
 
 if (!fs.existsSync("./session.json")) {

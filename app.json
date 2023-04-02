@@ -25,7 +25,7 @@
 						"required": true },
 						"HANDLERS": {
 							"description": "prefix !",
-							"value": ".", 
+							"value": "^[.,]", 
 							"required": true },
 							"SEND_READ": {
 								"description": "If entered true , bot will mark messages as read",

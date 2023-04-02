@@ -202,8 +202,7 @@ Bosco.addCMD(
 		desc: "Checks for update.",
 		},
 		async (message, match) => {
-			let {prefix} = message
-			let match = match[1]
+			match = match[1]
 			if (match === "now") {
 				await git.fetch();
 				var commits = await git.log([

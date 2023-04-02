@@ -243,12 +243,12 @@ Bosco.addCMD(
       	footer: "click here to update",
       	buttons: [
       	{
-      		buttonId: `${prefix}update now`,
+      		buttonId: `update now`,
       		buttonText: { displayText: "update now" },
       		},
       		],
       		});*/
-      		return await message.reply(availupdate + "\n" + `Type _${prefix}update now_ to update`)
+      		return await message.reply(availupdate + "\n" + `Type _update now_ to update`)
       		}
       		}
       		);

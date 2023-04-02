@@ -25,6 +25,14 @@ const { parsejid } = require('./lib/bot')
 var pjson = require('./package.json');
 const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
 
+//Prefix
+global.PREFIX = ''
+if (/\[(\W*)\]/.test(config.HANDLERS)) {
+   PREFIX = config.HANDLERS.match(/\[(\W*)\]/)[1][0];
+} else {
+   PREFIX = '.'
+}
+
 if (!fs.existsSync("./session.json")) {
 	MakeSession(config.SESSION_ID, "./session.json").then(
     console.log("session occured")

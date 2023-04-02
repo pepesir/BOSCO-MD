@@ -94,7 +94,6 @@ Bosco.addCMD(
 		},
 		async (message, match) => {
 			match = match[1]
-console.log(match)
 			if (!match)
 			return await message.reply(`_Example: .setvar SUDO:917736622139_`);
 			const [key, value] = match.split(":");
@@ -203,9 +202,7 @@ Bosco.addCMD(
 		desc: "Checks for update.",
 		},
 		async (message, match) => {
-console.log(match)
 			match = match[1]
-console.log(match)
 			if (match === "now") {
 				await git.fetch();
 				var commits = await git.log([
@@ -243,9 +240,9 @@ console.log(match)
         				} else {
         					var availupdate = "ᴜᴘᴅᴀᴛᴇs ᴀᴠᴀɪʟᴀʙʟᴇ \n\n";
         					commits["all"].map((commit, num) => {
-        						availupdate += num + 1 + " ●  " + commit.message + "\n";
+        						availupdate += num + 1 + " . " + commit.message + "\n";
       });
-      return await message.sendMessage(message.chatId, {
+      /*return await message.sendMessage(message.chatId, {
       	text: availupdate,
       	footer: "click here to update",
       	buttons: [
@@ -254,7 +251,8 @@ console.log(match)
       		buttonText: { displayText: "update now" },
       		},
       		],
-      		});
+      		});*/
+      		return await message.reply(availupdate + "\n" + `Type _${prefix}update now_ to update`)
       		}
       		}
       		);

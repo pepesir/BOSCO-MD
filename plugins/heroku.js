@@ -87,7 +87,7 @@ await message.reply("```" + quota + "```");
 
 Bosco.addCMD(
 	{
-		pattern: "setvar ",
+		pattern: "setvar ?(.*)",
 		isOwner: true,
 		desc: "Set heroku env",
 		type: "heroku",
@@ -117,7 +117,7 @@ console.log(match)
 
 Bosco.addCMD(
 	{
-		pattern: "delvar ",
+		pattern: "delvar ?(.*)",
 		isOwner: true,
 		desc: "Delete Heroku env",
 		type: "heroku",
@@ -147,7 +147,7 @@ Bosco.addCMD(
 
 Bosco.addCMD(
 	{
-		pattern: "getvar ",
+		pattern: "getvar ?(.*)",
 		isOwner: true,
 		desc: "Show heroku env",
 		type: "heroku",
@@ -197,13 +197,15 @@ Bosco.addCMD(
 
 Bosco.addCMD(
 	{
-		pattern: "update",
+		pattern: "update ?(.*)",
 		isOwner: true,
 		type: "heroku",
 		desc: "Checks for update.",
 		},
 		async (message, match) => {
+console.log(match)
 			match = match[1]
+console.log(match)
 			if (match === "now") {
 				await git.fetch();
 				var commits = await git.log([

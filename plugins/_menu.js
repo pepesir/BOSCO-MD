@@ -26,7 +26,7 @@ Bosco.addCMD({
 						if (/\[(\W*)\]/.test(Config.HANDLERS)) {
 							HANDLER = Config.HANDLERS.match(/\[(\W*)\]/)[1][0];
 							} else {
-								HANDLER = '.';
+								HANDLER = Config.HANDLERS
 								}
 								CMD_HELP += '' + num++ + '. ' + (match.length >= 3 ? (HANDLER + mmatch) : command.pattern) + '\n' + command.desc + '\n\n'
 								}
@@ -56,11 +56,11 @@ Bosco.addCMD({
 					} catch {
 						var match = [command.pattern]
 						}
-						var HANDLER = '';
+						var HANDLER = ''
 						if (/\[(\W*)\]/.test(Config.HANDLERS)) {
 							HANDLER = Config.HANDLERS.match(/\[(\W*)\]/)[1][0];
 							} else {
-								HANDLER = '.';
+								HANDLER = Config.HANDLERS
 								}
 								if (command.type === 'download') {
 									download += `▢ ${HANDLER}${match}\n┊`
@@ -127,8 +127,8 @@ Bosco.addCMD({
       caption: CMD_MENU.trim(),
       footer: `bosco-md`,
       buttons: [
-        {buttonId: 'alive', buttonText: {displayText: 'ALIVE TEST'}},
-      {buttonId: '.ping', buttonText: {displayText: 'SPEED TEST'}}
+        {buttonId: `${PREFIX}owner`, buttonText: {displayText: 'OWNER'}},
+      {buttonId: `${PREFIX}ping`, buttonText: {displayText: 'PING'}}
     ],
     
     contextInfo: {

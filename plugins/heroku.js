@@ -94,6 +94,7 @@ Bosco.addCMD(
 		},
 		async (message, match) => {
 			match = match[1]
+console.log(match)
 			if (!match)
 			return await message.reply(`_Example: .setvar SUDO:917736622139_`);
 			const [key, value] = match.split(":");

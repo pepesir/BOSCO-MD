@@ -21,7 +21,7 @@ const got = require('got');
 const simpleGit = require('simple-git');
 const git = simpleGit();
 const { smsg, getBuffer } = require('./lib/myfunc')
-const { parsejid } = require('./lib/bot')
+const { parsejid } = require('./lib/bot');
 var pjson = require('./package.json');
 const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
 

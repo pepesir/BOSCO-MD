@@ -79,7 +79,7 @@ Bosco.addCMD(
 								});	
 								});
 								}); 
-								})
+								
 
 Bosco.addCMD(
 	{

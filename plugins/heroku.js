@@ -238,13 +238,13 @@ Bosco.addCMD(
         					commits["all"].map((commit, num) => {
         						availupdate += num + 1 + " . " + commit.message + "\n";
       });
-      return await conn.sendMessage(conn.chatId, {
+      return await message.sendMessage(message.chatId, {
       caption: availupdate,
       footer: `bosco-md`,
       buttons: [
         {buttonId: '${PREFIX}update now', buttonText: {displayText: '_UPDATE NOW_'}}
     ]
-			}, {quoted: conn.data})	
+			}, {quoted: message.data})	
       		}
       		}
       		);

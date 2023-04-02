@@ -72,7 +72,7 @@ Bosco.addCMD(
 							quota_used = Math.floor(resp.quota_used);			
 							percentage = Math.round((quota_used / total_quota) * 100);			
 							remaining = total_quota - quota_used;			
-							await message.reply(				"Total Quota" + ": ```{}```\n\n".format(runtime(total_quota)) +				"Quota used" + ": ```{}```\n".format(runtime(quota_used)) +				"Percentage" + ": ```{}```\n\n".format(percentage) +				"Quota remaining" + ": ```{}```\n".format(runtime(remaining))			);		
+							await message.reply(				"Total Quota" + ": ```{}```\n\n".format(runtime(total_quota)) +				"Quota used" + ": ```{}```\n".format(runtime(quota_used)) + "\n" +				"Percentage" + ": ```{}```\n\n".format(percentage) +				"Quota remaining" + ": ```{}```\n".format(runtime(remaining))			);		
 							})
 							.catch(async (err) => {			
 								await message.reply(err.message);		

@@ -17,8 +17,7 @@ Bosco.addCMD({
 			async (command) =>  {
 				if (command.dontAddCommandList || command.pattern === undefined) return;
 				try {
-					var match = command.pattern.toString().match(/(\W*)([A-Za-zğüşıiöç1234567890 ]*)/);
-					var mmatch = command.pattern.toString().match(/(\W*)([A-Za-züşiğ öç1234567890]*)/)[2]
+					var match = command.pattern.toString().match(/(\W*)([A-Za-züşiğ öç1234567890]*)/)[2]
 					} catch {
 						var match = [command.pattern];
 						}
@@ -28,7 +27,7 @@ Bosco.addCMD({
 							} else {
 								HANDLER = Config.HANDLERS
 								}
-								CMD_HELP += '' + num++ + '. ' + (match.length >= 3 ? (HANDLER + mmatch) : command.pattern) + '\n' + command.desc + '\n\n'
+								CMD_HELP += '' + num++ + '. ' + match + '\n' + command.desc + '\n\n'
 								}
 								);
 								await conn.sendMessage(conn.chatId, { text : CMD_HELP.trim() }, { quoted: conn.data });

@@ -50,7 +50,7 @@ Bosco.addCMD(
 	{ 
 		pattern: "plugin", 
 		isOwner: true,
-		desc: "Returns installed plugins"
+		desc: "Returns installed plugins",
 		type: "misc" 
 		},
   async (message, match) => {

@@ -192,22 +192,51 @@ Bosco.addCMD(
 
 Bosco.addCMD(
 	{
-		pattern: "update ?(.*)",
+		pattern: "update$",
 		isOwner: true,
 		type: "heroku",
 		desc: "Checks for update.",
 		},
 		async (message, match) => {
-			match = match[1]
-			if (match === "now") {
-				await git.fetch();
-				var commits = await git.log([
-					Config.BRANCH + "..origin/" + Config.BRANCH,
-					]);
-					if (commits.total === 0) {
-						return await message.reply("_Already on latest version_");
-						} else {
-							await message.reply("_Updating_");
+			await git.fetch();
+			var commits = await git.log([Config.BRANCH + "..origin/" + Config.BRANCH]);
+			if (commits.total === 0) {
+				await message.reply("_Already on latest version_");
+				} else {
+					var availupdate = "ᴜᴘᴅᴀᴛᴇs ᴀᴠᴀɪʟᴀʙʟᴇ \n\n";
+					commits["all"].map((commit, num) => {
+						availupdate += num + 1 + ' . [' + commit.date.substring(0, 10) + ']: ' + commit.message + "\n";
+						});
+						const buttons = [
+						{buttonId: `${PREFIX}update now`, buttonText: {displayText: '_UPDATE NOW_'}, type: 1},
+						]
+						let buttonMessage = {
+							text: availupdate,
+							footer: 'bosco-md',
+							buttons: buttons,
+							headerType: 1
+							}
+							return await message.sendMessage(message.chatId, buttonMessage, {quoted: message.data})	
+							}
+							}
+							);
+
+Bosco.addCMD(
+	{
+		pattern: "update now$",
+		isOwner: true,
+		type: "heroku",
+		desc: "Update Bot.",
+		},
+		async (message, match) => {
+			await git.fetch();
+			var commits = await git.log([
+				Config.BRANCH + "..origin/" + Config.BRANCH,
+				]);
+				if (commits.total === 0) {
+					return await message.reply("_Already on latest version_");
+					} else {
+						await message.reply("_Updating_");
 							try {
 								var app = await heroku.get("/apps/" + Config.HEROKU.APP_NAME);
 								} catch {
@@ -215,40 +244,17 @@ Bosco.addCMD(
 									await new Promise((r) => setTimeout(r, 1000));
 									}
 									git.fetch("upstream", Config.BRANCH);
-        git.reset("hard", ["FETCH_HEAD"]);
-        var git_url = app.git_url.replace(
-        	"https://",
-        	"https://api:" + Config.HEROKU.API_KEY + "@"
-        	);
-        	try {  
-        		await git.addRemote("heroku", git_url);
-        		} catch {
-        			console.log("heroku remote error");
-        			}
-        			await git.push("heroku", Config.BRANCH);
-        			await message.reply("UPDATED");
-        			}
-        			}
-        			await git.fetch();
-        			var commits = await git.log([Config.BRANCH + "..origin/" + Config.BRANCH]);
-        			if (commits.total === 0) {
-        				await message.reply("_Already on latest version_");
-        				} else {
-        					var availupdate = "ᴜᴘᴅᴀᴛᴇs ᴀᴠᴀɪʟᴀʙʟᴇ \n\n";
-        					commits["all"].map((commit, num) => {
-        						availupdate += num + 1 + " . " + commit.message + "\n";
-      });
-const buttons = [
-  {buttonId: `${PREFIX}update now`, buttonText: {displayText: '_UPDATE NOW_'}, type: 1},
-]
-
-let buttonMessage = {
-    text: availupdate,
-    footer: 'bosco-md',
-    buttons: buttons,
-    headerType: 1
-}
-      return await message.sendMessage(message.chatId, buttonMessage, {quoted: message.data})	
-      		}
-      		}
-      		);
+									git.reset("hard", ["FETCH_HEAD"]);
+									var git_url = app.git_url.replace(
+										"https://",
+										"https://api:" + Config.HEROKU.API_KEY + "@"
+										);
+										try {  
+											await git.addRemote("heroku", git_url);
+											} catch {
+												console.log("heroku remote error");
+												}
+												await git.push("heroku", Config.BRANCH);
+												await message.reply("UPDATED");
+												}
+												})

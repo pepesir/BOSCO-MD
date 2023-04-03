@@ -12,7 +12,7 @@ Bosco.addCMD(
 		type: "misc",
 		},
 		async (message, match) => {
-			match = match[1] || conn.reply_msg
+			match = match[1] || message.reply_msg
 			if (!match) return await message.reply("Example:\n\nplugin url");
 			try {
 				var url = new URL(match);

@@ -89,7 +89,7 @@ if (!fs.existsSync("./session.json")) {
   			});
   			store.bind(conn.ev)
   			setInterval(() => {
-  				store.writeToFile("./src/store.json");
+  				store.writeToFile("./lib/store.json");
   				console.log("saved to store");
   				}, 30 * 60 * 1000);
   				conn.ev.on('connection.update', async(update) => {

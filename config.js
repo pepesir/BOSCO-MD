@@ -10,7 +10,7 @@ function convertToBool(text, fault = 'true') {
 		SESSION_ID: process.env.SESSION_ID || "",
 		BLOCKCHAT: process.env.BLOCK_CHAT || "",
 		WORKTYPE: process.env.WORK_TYPE || "private",
-		HANDLERS: process.env.HANDLERS || ".",
+		HANDLERS: process.env.HANDLERS || "",
 		SUDO: process.env.SUDO || "",
 		SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
 		BRANCH: 'main',

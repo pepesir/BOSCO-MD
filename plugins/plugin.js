@@ -18,7 +18,7 @@ Bosco.addCMD(
 				var url = new URL(match);
 				} catch (e) {
 					console.log(e);
-					return await message.reply("_Ready_");
+					return await message.reply("_Give valid link_");
 					}
 					if (url.host === "gist.github.com") {
 						url.host = "gist.githubusercontent.com";

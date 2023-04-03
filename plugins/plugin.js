@@ -8,7 +8,7 @@ Bosco.addCMD(
 	{
 		pattern: "install",
 		isOwner: true,
-		desc: "Install plugins"
+		desc: "Install plugins",
 		type: "misc",
 		},
 		async (message, match) => {

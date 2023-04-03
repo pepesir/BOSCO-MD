@@ -6,7 +6,7 @@ const { PluginDB, installPlugin } = require("./SQL/plugin");
 
 Bosco.addCMD(
 	{
-		pattern: "install",
+		pattern: "install ?(.*)",
 		isOwner: true,
 		desc: "Install plugins",
 		type: "misc",

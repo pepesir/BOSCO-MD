@@ -1,4 +1,3 @@
-// X-Asena
 const Bosco = require("../lib/events");
 const got = require("got");
 const fs = require("fs");

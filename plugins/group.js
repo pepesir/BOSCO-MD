@@ -1,7 +1,7 @@
 const Bot = require('../lib/events');
 Bot.addCMD(
 	{
-		pattern: 'jid',
+		pattern: 'jid$',
 		desc: 'get user/group jid',
 		isOwner: false,
 		type: 'misc'
@@ -12,7 +12,7 @@ async (conn, match) => {
 
 Bot.addCMD(
 	{
-		pattern: 'gjid',
+		pattern: 'gjid$',
 		desc: 'gets jid of all group members',
 		isOwner: false,
 		type: 'group'

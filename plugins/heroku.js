@@ -5,7 +5,7 @@ const Config = require("../config");
 const heroku = new Heroku({ token: Config.HEROKU.API_KEY });
 const baseURI = "/apps/" + Config.HEROKU.APP_NAME;
 const simpleGit = require("simple-git");
-const { runtime, prefix } = require("../lib/bot");
+const { runtime } = require("../lib/bot");
 const git = simpleGit();
 const exec = require("child_process").exec;
 

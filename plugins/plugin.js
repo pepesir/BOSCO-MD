@@ -28,7 +28,8 @@ Bosco.addCMD(
 							var plugin_name;
 							var { body, statusCode } = await got(url);
 							if (statusCode == 200) {
-								var plugin_name = body.match(/addCMD\({.*pattern: ["'](.*)["'].*}/);
+								var comand = body.match(/(?<=pattern:) ["'](.*?)["']/);
+                                                                plugin_name = comand[0].replace(/["']/g, "").trim().split(" ")[0];
 									if (!plugin_name) {
 										plugin_name = "__" + Math.random().toString(36).substring(8);
       }

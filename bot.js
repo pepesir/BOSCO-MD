@@ -70,12 +70,13 @@ if (!fs.existsSync("./session.json")) {
     									return this;
     									};
     									async function BOSCO() { 
-    										await config.DATABASE.sync();
     										console.log('Connecting...');
     										const { state, saveState } = useSingleFileAuthState(
     "./session.json",
     pino({ level: "silent" })
   );
+  console.log("Syncing Database");
+  await config.DATABASE.sync();
   const conn = makeWASocket({
   	logger: pino({level: 'silent'}),
   	printQRInTerminal: true,

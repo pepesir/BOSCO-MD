@@ -22,7 +22,8 @@ async (conn, match) => {
 	var user = mentionUser || replyUser
 	if (!user) 
 	return await conn.reply('mention/reply user')
-	var sudo = SUDO + "," + user
+	var sudo = (SUDO + "," + user).replace(/,,/g,",");
+        sudo = sudo.startsWith(",") ? sudo.replace(",","") : sudo;
 	await conn.reply("SUDO :" + sudo);
 	await heroku
  .patch(baseURI + "/config-vars", { body: { SUDO: sudo } })

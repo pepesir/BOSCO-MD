@@ -5,35 +5,6 @@ const pjson = require('../package.json');
 const { runtime, getBuffer} = require('../lib/bot');
 
 Bosco.addCMD({
-	pattern: 'help',
-	desc: '',
-	isOwner: false,
-	dontAddCommandList: true 
-	}, 
-	async (conn, match) => {
-		var CMD_HELP = '';
-		var num = 1  
-		Bosco.commands.map(
-			async (command) =>  {
-				if (command.dontAddCommandList || command.pattern === undefined) return;
-				try {
-					var match = command.pattern.toString().match(/(\W*)([A-Za-züşiğ öç1234567890]*)/)[2]
-					} catch {
-						var match = [command.pattern];
-						}
-						var HANDLER = '';
-						if (/\[(\W*)\]/.test(Config.HANDLERS)) {
-							HANDLER = Config.HANDLERS.match(/\[(\W*)\]/)[1][0];
-							} else {
-								HANDLER = Config.HANDLERS
-								}
-								CMD_HELP += '' + num++ + '. ' + match + '\n' + command.desc + '\n\n'
-								}
-								);
-								await conn.sendMessage(conn.chatId, { text : CMD_HELP.trim() }, { quoted: conn.data });
-								});
-
-Bosco.addCMD({
 	pattern: 'menu',
 	desc: '',
 	isOwner: false,

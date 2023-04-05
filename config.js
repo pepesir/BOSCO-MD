@@ -14,12 +14,12 @@ function convertToBool(text, fault = 'true') {
 		SUDO: process.env.SUDO || "",
 		SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
 		BRANCH: 'main',
+                DATABASE_URL: DATABASE_URL,
+          	DATABASE: DATABASE_URL === './bosco.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
+		DEBUG: DEBUG,
 		HEROKU: {
 			HEROKU: process.env.HEROKU === undefined ? false : convertToBool(process.env.HEROKU),
 			API_KEY: process.env.HEROKU_API_KEY === undefined ? '' : process.env.HEROKU_API_KEY,
 			APP_NAME: process.env.HEROKU_APP_NAME === undefined ? '' : process.env.HEROKU_APP_NAME
-			},
-			DATABASE_URL: DATABASE_URL,
-			DATABASE: DATABASE_URL === './bosco.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
-			DEBUG: DEBUG
+			}
 };

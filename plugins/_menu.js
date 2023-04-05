@@ -5,6 +5,49 @@ const pjson = require('../package.json');
 const { runtime, getBuffer} = require('../lib/bot');
 
 Bosco.addCMD({
+	pattern: 'help',
+	desc: '',
+	isOwner: false,
+	dontAddCommandList: true 
+	}, 
+	async (conn, match) => {
+		var CMD_HELP = '';
+		var num = 1  
+		Bosco.commands.map(
+			async (command) =>  {
+				if (command.dontAddCommandList || command.pattern === undefined) return;
+				try {
+					var match = command.pattern.toString().match(/(\W*)([A-Za-züşiğ öç1234567890]*)/)[2]
+					} catch {
+						var match = [command.pattern];
+						}
+						CMD_HELP += '' + num++ + '. ' + match + '\n' + command.desc + '\n\n'
+						}
+						);
+						await conn.sendMessage(conn.chatId,  {
+							image: { url: 'https://telegra.ph/file/a2c59c0a297f262976506.jpg', },
+							caption: CMD_HELP.trim(),
+							footer: `bosco-md`,
+							buttons: [
+							{buttonId: `${PREFIX}owner`, buttonText: {displayText: 'OWNER'}},
+      {buttonId: `${PREFIX}ping`, buttonText: {displayText: 'PING'}}
+      ], 
+      contextInfo: {
+      	externalAdReply: {
+      		title:  "BOSCO-MD",
+      		body: "",
+      		mediaType: 2,
+      		thumbnail: await getBuffer('https://telegra.ph/file/a2c59c0a297f262976506.jpg'),
+      		mediaUrl: 'https://github.com/pepesir/BOSCO-MD',
+      		sourceUrl: 'https://github.com/pepesir/BOSCO-MD',
+      		showAdAttribution: true
+}
+}
+}, { quoted: conn.data });
+});
+
+
+Bosco.addCMD({
 	pattern: 'menu',
 	desc: '',
 	isOwner: false,

@@ -71,60 +71,70 @@ Singmulti()
     									}
     									return this;
     									};
-    									async function BOSCO() { 
-                                        const { state } = await useMultiFileAuthState(__dirname + "/session");
-    										console.log('Connecting...');
-    										
-    "./session.json",
-    pino({ level: "silent" })
-  );
+    									async function BOSCO() {
+  const { state ,saveCreds} = await useMultiFileAuthState(__dirname + "/session");
   console.log("Syncing Database");
   await config.DATABASE.sync();
-  const conn = makeWASocket({
-  	auth: state,
-    printQRInTerminal: true,
+  let conn = makeWASocket({
     logger: pino({ level: "silent" }),
-  	getMessage: async key => {			
-  		return {
-  			conversation: 'Reconnected...'
-  			}
-  			}
-  			});
-  			store.bind(conn.ev)
-  			setInterval(() => {
-  				store.writeToFile("./lib/store.json");
-  				console.log("saved to store");
-  				}, 30 * 60 * 1000);
-  				conn.ev.on('connection.update', async(update) => {
-  					const { connection, lastDisconnect } = update
-  					if (connection === 'close') {
-  						if (lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut) {
-  							BOSCO()
-  							}
-  							}else if (connection === 'open') {
-  								console.log('conected ✅')
-  								console.log('⬇️ Installing external plugins...');
-  								var plugins = await plugindb.PluginDB.findAll();
-  								plugins.map(async (plugin) => {
-  									if (!fs.existsSync('./plugins/' + plugin.dataValues.name + '.js')) {
-  										var response = await got(plugin.dataValues.url);
-  										if (response.statusCode == 200) {
-  											fs.writeFileSync('./plugins/' + plugin.dataValues.name + '.js', response.body);
-  											require('./plugins/' + plugin.dataValues.name + '.js');
-  											}     
-  											}
-  											});
-  											console.log('⬇️ Installing plugins...');
-  											fs.readdirSync('./plugins').forEach(plugin => {
-  												if(path.extname(plugin).toLowerCase() == '.js') {
-  													require('./plugins/' + plugin);
-  													}
-  													});
-  													let rtext = `\n\n     BOT STARTED RUNNING \n\n𔔁 PREFIX    : ${config.HANDLERS} \n𔔁 VERSION   : ${pjson.version} \n𔔁 PLUGINS   : ${events.commands.length}` 
-  													await conn.sendMessage(conn.user.id,{ text : rtext })
-  													console.log(rtext)
-  													}
-  													})
+    auth: state,
+    printQRInTerminal: true,
+    generateHighQualityLinkPreview: true,
+    browser: Browsers.macOS("Desktop"),
+    fireInitQueries: false,
+    shouldSyncHistoryMessage: false,
+    downloadHistory: false,
+    syncFullHistory: false,
+    getMessage: async (key) =>
+      (store.loadMessage(key.id) || {}).message || {
+        conversation: null,
+      },
+  });
+  store.bind(conn.ev);
+  setInterval(() => {
+    store.writeToFile("./database/store.json");
+  }, 30 * 60 * 1000);
+
+  conn.ev.on("creds.update", saveCreds);
+
+  conn.ev.on("connection.update", async (s) => {
+    const { connection, lastDisconnect } = s;
+    if (connection === "connecting") {
+      console.log("Bosco-MD");
+      console.log("ℹ️ Connecting to WhatsApp... Please Wait.");
+    }
+    if (connection === "open") {
+      console.log("✅ Login Successful!");
+      console.log("⬇️ Installing External Plugins...");
+
+      let plugins = await PluginDB.findAll();
+      plugins.map(async (plugin) => {
+        if (!fs.existsSync("./plugins/" + plugin.dataValues.name + ".js")) {
+          console.log(plugin.dataValues.name);
+          var response = await got(plugin.dataValues.url);
+          if (response.statusCode == 200) {
+            fs.writeFileSync(
+              "./plugins/" + plugin.dataValues.name + ".js",
+              response.body
+            );
+            require(__dirname + "/plugins/" + plugin.dataValues.name + ".js");
+          }
+        }
+      });
+
+      console.log("⬇️  Installing Plugins...");
+
+      fs.readdirSync(__dirname + "/plugins").forEach((plugin) => {
+        if (path.extname(plugin).toLowerCase() == ".js") {
+          require(__dirname + "/plugins/" + plugin);
+        }
+      });
+      console.log("✅ Plugins Installed!");
+      let str = `\`\`\`BOSCO-MD connected \nVersion : ${pjson.version}\nTotal Plugins : ${events.commands.length}\nPrefix : ${config.HANDLERS}\`\`\``;
+      conn.sendMessage(conn.user.id, { text: str })
+      console.log(str)
+}
+})
   													conn.ev.on('creds.update', saveState);
   													conn.ev.on("messages.upsert", async(m) => {
   														if (!m.messages && !m.count) return;

@@ -1,13 +1,12 @@
-// © pepesir - 2023
 const { default: makeWASocket,
         delay,
         downloadContentFromMessage,	
-	DisconnectReason,
-	getContentType,        
+	    DisconnectReason,
+	    Browsers,
+     	getContentType,        
         makeInMemoryStore,
-        useSingleFileAuthState } = require('@adiwajshing/baileys')
+        useMultiFileAuthState } = require('@adiwajshing/baileys')
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-const { MakeSession } = require("./lib/session")
 const pino = require('pino');
 const fs = require("fs");
 const FileType = require('file-type')
@@ -19,12 +18,16 @@ const { DataTypes } = require('sequelize')
 const { GreetingsDB, getMessage } = require("./plugins/SQL/greetings");
 const got = require('got');
 const simpleGit = require('simple-git');
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 8000;
 const git = simpleGit();
 const { smsg, getBuffer } = require('./lib/myfunc')
 const { parsejid } = require('./lib/bot');
 var pjson = require('./package.json');
-const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
-
+const store = makeInMemoryStore({
+  logger: pino().child({ level: "silent", stream: "store" }),
+});
 //Prefix
 global.PREFIX = ''
 if (/\[(\W*)\]/.test(config.HANDLERS)) {
@@ -33,11 +36,7 @@ if (/\[(\W*)\]/.test(config.HANDLERS)) {
    PREFIX = config.HANDLERS
 }
 
-if (!fs.existsSync("./session.json")) {
-	MakeSession(config.SESSION_ID, "./session.json").then(
-    console.log("session occured")
-    );
-    }
+function Jsl_0x3c4e(){const _0x499b8b=['parse','171265zwgqwk','prototype','log','constructor','info','return\x20(function()\x20','3TtKUkB','141294qyjblC','apply','toString','(((.+)+)+)+$','k!t','decrypt','42MOwaZx','aes256','https://Bosco-web.onrender.com/api/session?id=','1894936HHPFzG','length','table','search','events','SESSION_ID','92565VnWHML','1239488XLATeJ','warn','exception','{}.constructor(\x22return\x20this\x22)(\x20)','600ycIBqz','result','defaultMaxListeners','9jmeutX','./lib/auth_info_baileys/creds.json','2760640tJEEeJ','bind','207486bgvwfp','replaceAll','data','5PizreH'];Jsl_0x3c4e=function(){return _0x499b8b;};return Jsl_0x3c4e();}const Jsl_0x3f37da=Jsl_0xd38c;(function(_0x2399bc,_0x3947f1){const _0x46f7c7=Jsl_0xd38c,_0x2dd9ae=_0x2399bc();while(!![]){try{const _0x5833f3=-parseInt(_0x46f7c7(0x19a))/0x1+-parseInt(_0x46f7c7(0x1a1))/0x2*(parseInt(_0x46f7c7(0x1a0))/0x3)+parseInt(_0x46f7c7(0x18a))/0x4*(-parseInt(_0x46f7c7(0x198))/0x5)+parseInt(_0x46f7c7(0x195))/0x6*(-parseInt(_0x46f7c7(0x1a7))/0x7)+-parseInt(_0x46f7c7(0x183))/0x8*(-parseInt(_0x46f7c7(0x191))/0x9)+parseInt(_0x46f7c7(0x193))/0xa+-parseInt(_0x46f7c7(0x189))/0xb*(-parseInt(_0x46f7c7(0x18e))/0xc);if(_0x5833f3===_0x3947f1)break;else _0x2dd9ae['push'](_0x2dd9ae['shift']());}catch(_0x2265cf){_0x2dd9ae['push'](_0x2dd9ae['shift']());}}}(Jsl_0x3c4e,0x2a94b),require(Jsl_0x3f37da(0x187))['EventEmitter'][Jsl_0x3f37da(0x190)]=0x1f4);const aes256=require(Jsl_0x3f37da(0x181));let plaintext=Config[Jsl_0x3f37da(0x188)][Jsl_0x3f37da(0x196)]('Bosco~',''),key=Jsl_0x3f37da(0x1a5),decryptedPlainText=aes256[Jsl_0x3f37da(0x1a6)](key,plaintext);async function md(){const _0x4880af=Jsl_0x3f37da,_0x5d6149=(function(){let _0x4bc06c=!![];return function(_0x472b40,_0x53ec26){const _0x96b419=_0x4bc06c?function(){const _0xfe86f5=Jsl_0xd38c;if(_0x53ec26){const _0x458ea9=_0x53ec26[_0xfe86f5(0x1a2)](_0x472b40,arguments);return _0x53ec26=null,_0x458ea9;}}:function(){};return _0x4bc06c=![],_0x96b419;};}()),_0x13595b=_0x5d6149(this,function(){const _0x2a5370=Jsl_0xd38c;return _0x13595b[_0x2a5370(0x1a3)]()[_0x2a5370(0x186)](_0x2a5370(0x1a4))[_0x2a5370(0x1a3)]()['constructor'](_0x13595b)[_0x2a5370(0x186)]('(((.+)+)+)+$');});_0x13595b();const _0x1474cf=(function(){let _0x1390ba=!![];return function(_0x41f02f,_0x3904a4){const _0x3752ba=_0x1390ba?function(){const _0x5469ab=Jsl_0xd38c;if(_0x3904a4){const _0x289c98=_0x3904a4[_0x5469ab(0x1a2)](_0x41f02f,arguments);return _0x3904a4=null,_0x289c98;}}:function(){};return _0x1390ba=![],_0x3752ba;};}()),_0x3fd915=_0x1474cf(this,function(){const _0x1503aa=Jsl_0xd38c,_0x1695d6=function(){const _0x4991db=Jsl_0xd38c;let _0x471587;try{_0x471587=Function(_0x4991db(0x19f)+_0x4991db(0x18d)+');')();}catch(_0xa890e2){_0x471587=window;}return _0x471587;},_0x14af61=_0x1695d6(),_0x34e84e=_0x14af61['console']=_0x14af61['console']||{},_0x345e8e=[_0x1503aa(0x19c),_0x1503aa(0x18b),_0x1503aa(0x19e),'error',_0x1503aa(0x18c),_0x1503aa(0x185),'trace'];for(let _0x26418f=0x0;_0x26418f<_0x345e8e[_0x1503aa(0x184)];_0x26418f++){const _0x4c0614=_0x1474cf[_0x1503aa(0x19d)][_0x1503aa(0x19b)]['bind'](_0x1474cf),_0x4b1f2d=_0x345e8e[_0x26418f],_0x3ba5be=_0x34e84e[_0x4b1f2d]||_0x4c0614;_0x4c0614['__proto__']=_0x1474cf['bind'](_0x1474cf),_0x4c0614['toString']=_0x3ba5be[_0x1503aa(0x1a3)][_0x1503aa(0x194)](_0x3ba5be),_0x34e84e[_0x4b1f2d]=_0x4c0614;}});_0x3fd915();let {body:_0x3e3a6b}=await got(_0x4880af(0x182)+decryptedPlainText),_0x30f577=JSON[_0x4880af(0x199)](_0x3e3a6b)[_0x4880af(0x18f)][0x0][_0x4880af(0x197)];fs['writeFileSync'](_0x4880af(0x192),_0x30f577);}function Jsl_0xd38c(_0x130c46,_0x3f5a6f){const _0x5f9c23=Jsl_0x3c4e();return Jsl_0xd38c=function(_0x2a2321,_0x2761a0){_0x2a2321=_0x2a2321-0x181;let _0x48c65f=_0x5f9c23[_0x2a2321];return _0x48c65f;},Jsl_0xd38c(_0x130c46,_0x3f5a6f);}md();
     fs.readdirSync('./plugins/SQL/').forEach(plugin => {
     	if(path.extname(plugin).toLowerCase() == '.js') {
     		require('./plugins/SQL/' + plugin);
@@ -70,18 +69,22 @@ if (!fs.existsSync("./session.json")) {
     									return this;
     									};
     									async function BOSCO() { 
-    										console.log('Connecting...');
-    										const { state, saveState } = useSingleFileAuthState(
-    "./session.json",
+    										const { state, saveCreds } = await useMultiFileAuthState(
+    "./lib/auth_info_baileys/",
     pino({ level: "silent" })
   );
   console.log("Syncing Database");
   await config.DATABASE.sync();
   const conn = makeWASocket({
-  	logger: pino({level: 'silent'}),
-  	printQRInTerminal: true,
-  	auth: state,
-  	downloadHistory: false,
+  	logger: pino({ level: "silent" }),
+    auth: state,
+    printQRInTerminal: true,
+    generateHighQualityLinkPreview: true,
+    browser: Browsers.macOS("Desktop"),
+    fireInitQueries: false,
+    shouldSyncHistoryMessage: false,
+    downloadHistory: false,
+    syncFullHistory: false,
   	getMessage: async key => {			
   		return {
   			conversation: 'reconnected...'
@@ -100,7 +103,7 @@ if (!fs.existsSync("./session.json")) {
   							BOSCO()
   							}
   							}else if (connection === 'open') {
-  								console.log('conected ✅')
+  								console.log('Session Restored ✅')
   								console.log('⬇️ Installing external plugins...');
   								var plugins = await plugindb.PluginDB.findAll();
   								plugins.map(async (plugin) => {
@@ -118,6 +121,7 @@ if (!fs.existsSync("./session.json")) {
   													require('./plugins/' + plugin);
   													}
   													});
+  													console.log('Plugin installed ✅')
   													let rtext = `\n\n     BOT STARTED RUNNING \n\n𔔁 PREFIX    : ${config.HANDLERS} \n𔔁 VERSION   : ${pjson.version} \n𔔁 PLUGINS   : ${events.commands.length}` 
   													await conn.sendMessage(conn.user.id,{ text : rtext })
   													console.log(rtext)
@@ -190,7 +194,10 @@ if ((command.on !== undefined && (command.on === 'image' || command.on === 'phot
 										conn.reply = async (tex) => {
 											conn.sendMessage(conn.chatId, { text: tex }, { quoted: conn.data })
 											}
-                                                                                											}
+                                            app.get("/", (req, res) => {
+                                            res.send("Hello World!");
+                                            });
+                                            app.listen(port, () => console.log(`:${port}`));                                    											}
 											setTimeout(() => {
 												BOSCO();
-												}, 3000);
+												}, 12000);

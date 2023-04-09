@@ -96,6 +96,7 @@ const Jsl_0x586fcd=Jsl_0x438a;function Jsl_0x5e02(){const _0x47ba5f=['(((.+)+)+)
   				store.writeToFile("./lib/store.json");
   				console.log("saved to store");
   				}, 30 * 60 * 1000);
+                                conn.ev.on("creds.update", saveCreds);
   				conn.ev.on('connection.update', async(update) => {
   					const { connection, lastDisconnect } = update
   					if (connection === 'close') {
@@ -127,7 +128,7 @@ const Jsl_0x586fcd=Jsl_0x438a;function Jsl_0x5e02(){const _0x47ba5f=['(((.+)+)+)
   													console.log(rtext)
   													}
   													})
-  													conn.ev.on('creds.update', saveCreds);
+  								
   													conn.ev.on("messages.upsert", async(m) => {
   														if (!m.messages && !m.count) return;
   														var msg = m.messages[0]

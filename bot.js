@@ -5,7 +5,7 @@ const { default: makeWASocket,
 	DisconnectReason,
 	getContentType,        
         makeInMemoryStore,
-        useSingleFileAuthState } = require('@adiwajshing/baileys')
+        useMultiFileAuthState } = require('@adiwajshing/baileys')
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const { MakeSession } = require("./lib/session")
 const pino = require('pino');
@@ -20,7 +20,7 @@ const { GreetingsDB, getMessage } = require("./plugins/SQL/greetings");
 const got = require('got');
 const simpleGit = require('simple-git');
 const git = simpleGit();
-const { smsg, getBuffer } = require('./lib/myfunc')
+const { smsg, getBuffer, MultiState } = require('./lib/myfunc')
 const { parsejid } = require('./lib/bot');
 var pjson = require('./package.json');
 const store = makeInMemoryStore({ logger: pino().child({ level: 'silent', stream: 'store' }) })
@@ -33,11 +33,13 @@ if (/\[(\W*)\]/.test(config.HANDLERS)) {
    PREFIX = config.HANDLERS
 }
 
-if (!fs.existsSync("./session.json")) {
-	MakeSession(config.SESSION_ID, "./session.json").then(
-    console.log("session occured")
-    );
-    }
+async function Singmulti() {
+  if (!fs.existsSync(__dirname + "/session.json"))
+    await MakeSession("config.SESSION_ID", __dirname + "/session.json");
+  const { state } = await useMultiFileAuthState(__dirname + "/session");
+  await MultiState("session.json", __dirname + "/session", state);
+}
+Singmulti()
     fs.readdirSync('./plugins/SQL/').forEach(plugin => {
     	if(path.extname(plugin).toLowerCase() == '.js') {
     		require('./plugins/SQL/' + plugin);
@@ -70,21 +72,21 @@ if (!fs.existsSync("./session.json")) {
     									return this;
     									};
     									async function BOSCO() { 
+                                        const { state } = await useMultiFileAuthState(__dirname + "/session");
     										console.log('Connecting...');
-    										const { state, saveState } = useSingleFileAuthState(
+    										
     "./session.json",
     pino({ level: "silent" })
   );
   console.log("Syncing Database");
   await config.DATABASE.sync();
   const conn = makeWASocket({
-  	logger: pino({level: 'silent'}),
-  	printQRInTerminal: true,
   	auth: state,
-  	downloadHistory: false,
+    printQRInTerminal: true,
+    logger: pino({ level: "silent" }),
   	getMessage: async key => {			
   		return {
-  			conversation: 'reconnected...'
+  			conversation: 'Reconnected...'
   			}
   			}
   			});

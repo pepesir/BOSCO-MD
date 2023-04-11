@@ -26,6 +26,7 @@
 				"dependencies": {
 					"@adiwajshing/baileys": "^4.4.0",
 					"@adiwajshing/keyed-db": "^0.2.4",
+                                        "abu-bot": "^2.4.0",
 					"axios": "^0.24.0",
 					"chalk": "^4.1.2",
 					"cheerio": "^1.0.0-rc.10",

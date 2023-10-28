@@ -2,8 +2,6 @@
 
 > Hobby proj
 
-> contributions are allowed
-
 > Base bot
 
 > Open source 
